@@ -4,11 +4,19 @@ function BankAccount(name, initialDeposit) {
 }
 
 BankAccount.prototype.depositFunds = function(amount) {
-  this.balance += amount;
+  if (amount > 0){ 
+    this.balance += amount;
+  }
 }
-
 BankAccount.prototype.withdrawFunds = function(amount) {
-  this.balance -= amount;
+  let sufficient = this.balance >= amount;
+  let positive = amount > 0;
+  if (sufficient && positive) {
+    this.balance -= amount;
+  } else {
+    
+  }
+  
 }
 
 function registerAccount(name, initialDeposit) {

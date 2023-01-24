@@ -61,6 +61,24 @@ tests = {
       },
       expected: 3300
     },
+    {
+      description: "It will not deposit funds if inputted amount is less than zero",
+      code: () => {
+        let testAccount = registerAccount('Bob Johnson', 2300);
+        testAccount.depositFunds(-5);
+        return testAccount.balance;
+      },
+      expected: 2300
+    },
+    {
+      description: "It will not deposit funds if inputted amount is zero",
+      code: () => {
+        let testAccount = registerAccount('Bob Johnson', 2300);
+        testAccount.depositFunds(0);
+        return testAccount.balance;
+      },
+      expected: 2300
+    },
   ],
 
   'BankAccount.prototype.withdrawFunds': [
@@ -80,7 +98,25 @@ tests = {
         testAccount.withdrawFunds(3000);
         return testAccount.balance;
       },
-      expected: 0
+      expected: 2300
+    },
+    {
+      description: "It will not withdraw funds if inputted amount is less than zero",
+      code: () => {
+        let testAccount = registerAccount('Bob Johnson', 2300);
+        testAccount.withdrawFunds(-5);
+        return testAccount.balance;
+      },
+      expected: 2300
+    },
+    {
+      description: "It will not withdraw funds if inputted amount is zero",
+      code: () => {
+        let testAccount = registerAccount('Bob Johnson', 2300);
+        testAccount.withdrawFunds(0);
+        return testAccount.balance;
+      },
+      expected: 2300
     },
   ],
 }
